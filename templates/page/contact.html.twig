@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %}Contact{% endblock %}
+{% block body %}
+<div id="contact" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <header class="page-header-block">
+                <span class="eyebrow">Contact</span>
+                <h1>Contact us</h1>
+                <p class="lead-muted">Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+            </header>
+
+            <div class="card form-card">
+                {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            {{ form_row(form.FirstName, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            {{ form_row(form.LastName, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    {{ form_row(form.Email, {'attr': {'class': 'form-control', 'placeholder': 'you@example.com'}}) }}
+                    {{ form_row(form.Subject, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_row(form.Message, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-actions">
+                        {{ form_widget(form.Send, {'attr': {'class': 'btn btn-lg'}}) }}
+                    </div>
+                {{ form_end(form) }}
+            </div>
+
+            <div class="card glass text-center" style="margin-top:24px" data-reveal>
+                <h3 style="margin-top:0">Get in touch</h3>
+                <p class="text-muted">Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero.</p>
+                <ul class="social" style="justify-content:center;margin:20px 0">
+                    <li><a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Google+"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+                <div class="meta" style="justify-content:center">
+                    <span><i class="fa fa-phone"></i>(00228)92229954</span>
+                    <span><i class="fa fa-envelope"></i>kouvenceslas93@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

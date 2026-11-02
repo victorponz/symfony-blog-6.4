@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div id="register" class="container">
+    <div class="auth-wrap">
+        <div class="card glass form-card">
+            <h1>Create account</h1>
+            <p class="lead-muted">Join to publish posts and comment.</p>
+
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'you@example.com'}}) }}
+                {{ form_row(registrationForm.name, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(registrationForm.plainPassword, {'label': 'Password', 'attr': {'class': 'form-control'}}) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+
+                <button type="submit" class="btn btn-lg btn-block">Create account</button>
+            {{ form_end(registrationForm) }}
+        </div>
+        <p class="auth-foot">Already registered? <a href="{{ path('app_login') }}">Sign in</a></p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<article class="card card-interactive post-card" data-reveal>
+    <a href="{{ path('single_post', {'slug': post.slug}) }}" class="media is-loading" tabindex="-1" aria-hidden="true">
+        <img src="{{ asset('images/blog/' ~ post.image) }}" alt="{{ post.title }}" loading="lazy">
+    </a>
+    <span class="post-date glass">{{ post.publishedAt | date('d') }} {{ post.publishedAt | date('F') }}</span>
+    <div class="post-body">
+        <h3><a href="{{ path('single_post', {'slug': post.slug}) }}">{{ post.title }}</a></h3>
+        <p>{{ post.content[:300] ~ '...' }}</p>
+    </div>
+    <div class="post-footer">
+        <a class="btn btn-ghost read-more" href="{{ path('single_post', {'slug': post.slug}) }}">Read more <i class="fa fa-arrow-right"></i></a>
+        <span class="meta">
+            <span title="Likes"><i class="fa fa-heart"></i>{{ post.numLikes }}</span>
+            <span title="Comments"><i class="fa fa-comments"></i>{{ post.numComments }}</span>
+        </span>
+    </div>
+</article>

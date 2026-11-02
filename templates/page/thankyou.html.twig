@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Thank you{% endblock %}
+{% block body %}
+<div id="thankyou" class="container">
+    <div class="auth-wrap" style="max-width:520px">
+        <div class="card glass text-center" style="padding:48px 36px">
+            <div class="feature-icon" style="margin:0 auto 20px;color:var(--success);background:rgba(61,220,151,.14);box-shadow:0 0 24px -6px rgba(61,220,151,.5)">
+                <i class="fa fa-check" style="animation:pop 500ms var(--ease-spring) 200ms both"></i>
+            </div>
+            <h1>Thank you!</h1>
+            <p class="lead-muted" style="margin:0 auto 28px">Thanks for getting in touch with us. We'll get back to you soon.</p>
+            <a class="btn btn-primary" href="{{ path('index') }}"><i class="fa fa-arrow-left"></i> Back home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

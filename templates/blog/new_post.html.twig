@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}New post{% endblock %}
+{% block body %}
+<div id="new-post" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <header class="page-header-block">
+                <span class="eyebrow">Write</span>
+                <h1>New post</h1>
+                <p class="lead-muted">Share a story with a title, some content and a cover image.</p>
+            </header>
+            <div class="card form-card">
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

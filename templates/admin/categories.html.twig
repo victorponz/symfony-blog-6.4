@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %}Categories{% endblock %}
+{% block body %}
+<div id="categories" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <header class="page-header-block">
+                <span class="eyebrow">Admin</span>
+                <h1>Categories</h1>
+            </header>
+
+            <div class="card form-card">
+                {{ form(form) }}
+            </div>
+
+            <div class="table-wrap" style="margin-top:24px" data-reveal>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <th scope="row">{{ category.id }}</th>
+                                <td>{{ category.name }}</td>
+                            </tr>
+                        {% else %}
+                            <tr><td colspan="2" class="text-muted">No categories yet.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

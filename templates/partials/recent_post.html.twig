@@ -1,0 +1,8 @@
+<a class="recent-item" href="{{ path('single_post', {'slug': recent.slug}) }}">
+    <span class="recent-title">{{ recent.title }}</span>
+    <span class="meta">
+        <span>By {{ recent.user.name }}</span>
+        <span><i class="fa fa-calendar-o"></i>{{ recent.publishedAt | date('d') }} {{ recent.publishedAt | date('F') }}</span>
+        <span><i class="fa fa-clock-o"></i>{{ recent.publishedAt | date('h') }} {{ recent.publishedAt | date('A') }}</span>
+    </span>
+</a>

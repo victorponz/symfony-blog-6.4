@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in{% endblock %}
+
+{% block body %}
+<div id="login" class="container">
+    <div class="auth-wrap">
+        <div class="card glass form-card">
+            <h1>Welcome back</h1>
+            <p class="lead-muted">Sign in to write posts and manage your content.</p>
+
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="alert alert-info">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="you@example.com" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="••••••••" required>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button class="btn btn-lg btn-block" type="submit">Sign in</button>
+            </form>
+        </div>
+        <p class="auth-foot">No account yet? <a href="{{ path('app_register') }}">Create one</a></p>
+    </div>
+</div>
+{% endblock %}

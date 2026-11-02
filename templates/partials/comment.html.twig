@@ -1,0 +1,13 @@
+<div class="comment" data-reveal>
+    <span class="avatar avatar-sm" aria-hidden="true">{{ comment.name|first }}</span>
+    <div>
+        <div class="comment-head">
+            <h4>{{ comment.name }}</h4>
+            <span class="meta">
+                <span><i class="fa fa-calendar-o"></i>{{ comment.publishedAt | date('d') }} {{ comment.publishedAt | date('F') }}</span>
+                <span><i class="fa fa-clock-o"></i>{{ comment.publishedAt | date('h') }} {{ comment.publishedAt | date('A') }}</span>
+            </span>
+        </div>
+        <p>{{ comment.text }}</p>
+    </div>
+</div>

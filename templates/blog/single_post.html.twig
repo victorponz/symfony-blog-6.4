@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ post ? post.title : 'Post' }}{% endblock %}
+{% block body %}
+<div id="single" class="container">
+    {% if not post %}
+        <div class="card empty-state">
+            <i class="fa fa-file-o"></i>
+            <h2>Post not found</h2>
+            <a class="btn btn-primary" href="{{ path('blog') }}"><i class="fa fa-arrow-left"></i> Back to blog</a>
+        </div>
+    {% else %}
+        <div class="row">
+            <!-- Full Article -->
+            <article class="col-xs-12 col-md-8">
+                <div class="article-hero">
+                    <div class="media is-loading">
+                        <img src="{{ asset('images/blog/' ~ post.image) }}" alt="{{ post.title }}">
+                    </div>
+                </div>
+
+                <header class="article-header">
+                    <h1>{{ post.title }}</h1>
+                    <div class="author">
+                        <span class="avatar" aria-hidden="true">{{ post.user.name|first }}</span>
+                        <div>
+                            <strong>{{ post.user.name }}</strong>
+                            <div class="meta">
+                                <span><i class="fa fa-calendar-o"></i>{{ post.publishedAt | date('d') }} {{ post.publishedAt | date('F') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="article-body">{{ post.content }}</div>
+
+                <div class="article-actions surface-inset">
+                    <a class="btn btn-ghost page-scroll" href="#form"><i class="fa fa-comment-o"></i> Comment</a>
+                    <a class="btn like-btn" href="{{ path('post_like', {slug: post.slug}) }}" aria-label="Like this post">
+                        <i class="fa fa-heart"></i> <span class="like-count">{{ post.numLikes }}</span>
+                    </a>
+                </div>
+
+                <!-- Comments -->
+                <section class="comments">
+                    <div class="comments-header">
+                        <h3>Comments</h3>
+                        <span class="count-badge">{{ post.comments|length }}</span>
+                    </div>
+                    {% for comment in post.comments %}
+                        {{ include('partials/comment.html.twig', {'comment': comment}) }}
+                    {% else %}
+                        <p class="text-muted">No comments yet. Be the first!</p>
+                    {% endfor %}
+                    <div style="margin-top:32px">
+                        {{ include('partials/form_comment.html.twig') }}
+                    </div>
+                </section>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="col-xs-12 col-md-4 sidebar">
+                <div class="card card-sm" data-reveal>
+                    <h4>Recent posts</h4>
+                    {% for recent in recents %}
+                        {{ include('partials/recent_post.html.twig', {'recent': recent}) }}
+                    {% endfor %}
+                </div>
+            </aside>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

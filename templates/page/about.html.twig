@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+{% block title %}About{% endblock %}
+{% block body %}
+<div id="about" class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="media is-loading">
+            <img src="{{ asset('images/about_us.jpg') }}" alt="Header picture">
+        </div>
+        <div class="hero-caption glass">
+            <span class="eyebrow">Who we are</span>
+            <h1>About us</h1>
+            <p>About us and our services.</p>
+        </div>
+    </section>
+
+    <!-- Studio / Team -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-6" style="margin-bottom:24px">
+            <div class="card card-interactive feature-card" data-reveal>
+                <div class="feature-icon"><i class="fa fa-institution"></i></div>
+                <h4>About our studio</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempora ea ratione vel nisi, qui perferendis nulla, fugit aut, beatae, tempore modi. Minus sequi iste, nam nobis, excepturi. Ut enim ad enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure.</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6" style="margin-bottom:24px">
+            <div class="card card-interactive feature-card" data-reveal style="--i:1">
+                <div class="feature-icon"><i class="fa fa-group"></i></div>
+                <h4>About our team</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempora ea ratione vel nisi, qui perferendis nulla, fugit aut, beatae, tempore modi. Minus sequi iste, nam nobis, excepturi. Ut enim ad enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-6" style="margin-bottom:24px">
+            <div class="card feature-card" data-reveal>
+                <div class="feature-icon"><i class="fa fa-tasks"></i></div>
+                <h4>Our services</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempora ea ratione vel nisi, qui perferendis nulla, fugit aut, beatae, tempore modi.</p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6" style="margin-bottom:24px">
+            <div class="card" data-reveal style="--i:1">
+                {% for skill in [
+                    {name: 'Photoshop', value: 80},
+                    {name: 'Shooting photo', value: 95},
+                    {name: 'Formation', value: 90}
+                ] %}
+                    <div class="meter">
+                        <div class="meter-head"><span>{{ skill.name }}</span><span>{{ skill.value }}%</span></div>
+                        <div class="meter-track" role="progressbar" aria-valuenow="{{ skill.value }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ skill.name }}">
+                            <div class="meter-bar" style="--value: {{ skill.value }}%"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <section class="section">
+        <div class="section-title">
+            <span class="eyebrow">Formation</span>
+            <h2>Pricing</h2>
+        </div>
+        <div class="row pricing-grid">
+            {% for plan in [
+                {name: 'Beginner', price: '$99.97', option: 'Beginner', featured: false},
+                {name: 'Intermediary', price: '$199.97', option: 'Intermediary', featured: true},
+                {name: 'Professional', price: '$299.97', option: 'High', featured: false}
+            ] %}
+                <div class="col-xs-12 col-sm-4">
+                    <div class="card card-interactive price-card {{ plan.featured ? 'is-featured' }}" data-reveal style="--i: {{ loop.index0 }}">
+                        {% if plan.featured %}<span class="badge-featured">POPULAR</span>{% endif %}
+                        <h4>{{ plan.name|upper }}</h4>
+                        <p class="price">{{ plan.price }}</p>
+                        <ul>
+                            {% for n in ['I', 'II', 'III', 'IV', 'V'] %}
+                                <li><i class="fa fa-check"></i>{{ plan.option }} Option {{ n }}</li>
+                            {% endfor %}
+                        </ul>
+                        <a href="#" class="btn btn-lg btn-block {{ plan.featured ? 'btn-primary' }}">Sign up</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="section-title">
+            <span class="eyebrow">Testimonials</span>
+            <h2>Clients feedback</h2>
+        </div>
+        <div class="row testimonials-grid">
+            {% for client in [
+                {img: 'client1.jpg', name: 'Miss Bella', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.'},
+                {img: 'client2.jpg', name: 'Don Peno', text: 'Tempora ea ratione vel nisi, qui perferendis nulla, fugit aut, beatae, tempore modi.'},
+                {img: 'client3.jpg', name: 'Sweety', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.'},
+                {img: 'client4.jpg', name: 'Lady', text: 'Tempora ea ratione vel nisi, qui perferendis nulla, fugit aut, beatae, tempore modi.'}
+            ] %}
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="card card-sm testimonial" data-reveal style="--i: {{ loop.index0 }}">
+                        <div class="who">
+                            <div class="media is-loading">
+                                <img src="{{ asset('images/clients/' ~ client.img) }}" alt="{{ client.name }}" loading="lazy">
+                            </div>
+                            <h5>{{ client.name|upper }}</h5>
+                        </div>
+                        <q>{{ client.text }}</q>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0a0c11">
+    <title>{% block title %}Blog{% endblock %}</title>
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <!-- Bootstrap core css (grid, collapse, tabs, tooltips) -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    <!-- Magnific-popup css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/magnific-popup.css') }}">
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+    <!-- Theme -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/modern.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body id="page-top">
+    <canvas id="network-bg" class="network-bg" aria-hidden="true"></canvas>
+    <div id="nav-progress" class="nav-progress" aria-hidden="true"></div>
+
+    {{ include('partials/navigation.html.twig') }}
+
+    <main class="page">
+        {% block body %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <ul>
+                <li><i class="fa fa-phone"></i>(00228)92229954</li>
+                <li><i class="fa fa-envelope"></i>design@example.com</li>
+            </ul>
+            <ul class="social">
+                <li><a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#" aria-label="Google+"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Toasts (flash messages are shown here too) -->
+    <div id="toast-stack" class="toast-stack" aria-live="polite">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="toast glass toast-{{ label }}" role="status">
+                    <span class="toast-icon"><i class="fa {{ label in ['danger', 'error', 'warning'] ? 'fa-exclamation' : (label == 'success' ? 'fa-check' : 'fa-info') }}"></i></span>
+                    <div class="toast-body">{{ message }}</div>
+                    <button type="button" class="toast-close" aria-label="Close"><i class="fa fa-times"></i></button>
+                    <span class="toast-timer"></span>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <!-- Bootstrap core Javascript -->
+    <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <!-- Plugins -->
+    <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    <!-- Theme -->
+    <script type="text/javascript" src="{{ asset('js/modern.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/network-bg.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+</body>
+</html>

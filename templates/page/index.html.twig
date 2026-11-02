@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block title %}Photo{% endblock %}
+{% block body %}
+<div id="index" class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="media is-loading">
+            <img src="{{ asset('images/index/woman.jpg') }}" alt="Header picture">
+        </div>
+        <div class="hero-caption glass">
+            <span class="eyebrow">Gallery</span>
+            <h1>Find nice pictures here</h1>
+            <p>Browse our collection by category, preview in full size and download your favourites.</p>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="index-body">
+        <ul class="chips glass" role="tablist">
+            {% for category in categories %}
+                <li class="{{ loop.first ? 'active' }}" role="presentation">
+                    <a href="#category{{ category.id }}" data-toggle="tab" role="tab" aria-controls="category{{ category.id }}">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="tab-content">
+            {% for category in categories %}
+                <div id="category{{ category.id }}" class="tab-pane {{ loop.first ? 'active' }}" role="tabpanel">
+                    <div class="row gallery-grid popup-gallery stagger">
+                        {% for image in category.images %}
+                            {{ include('partials/image.html.twig') }}
+                        {% else %}
+                            <div class="col-xs-12"><div class="card empty-state"><i class="fa fa-picture-o"></i>No pictures in this category yet.</div></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section">
+        <div class="newsletter glass" data-reveal>
+            <h3>Subscribe to our newsletter</h3>
+            <p>Subscribe to receive our news and gifts.</p>
+            <form id="newsletter-form" class="newsletter-form">
+                <input class="form-control" type="email" placeholder="your@email.com" aria-label="Email address" required>
+                <button type="submit" class="btn btn-lg">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="section">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <div class="card" data-reveal>
+                    <p class="meta" style="margin-bottom:16px"><i class="fa fa-map-marker"></i> 35 North Drive, Adroukpape, PY 88105, Agoe Telessou</p>
+                    <h4 style="margin:0">Our main partners</h4>
+                    <div class="partners">
+                        <div class="partner"><img src="{{ asset('images/index/log2.jpg') }}" alt="">First Partner Name</div>
+                        <div class="partner"><img src="{{ asset('images/index/log1.jpg') }}" alt="">Second Partner Name</div>
+                        <div class="partner"><img src="{{ asset('images/index/log3.jpg') }}" alt="">Third Partner Name</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}
